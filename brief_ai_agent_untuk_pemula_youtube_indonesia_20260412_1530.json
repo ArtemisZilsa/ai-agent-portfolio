@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-04-12T15:30:51.837250",
+  "topic": "AI Agent untuk Pemula YouTube Indonesia",
+  "brief": {
+    "topik_utama": "AI Agent untuk Pemula YouTube Indonesia",
+    "target_audience": {
+      "primer": "Pemula yang belum pernah dengar AI Agent",
+      "sekunder": "Business owner, freelancer, content creator yang ingin otomasi workflow",
+      "karakteristik": [
+        "Non-developer yang ingin memahami teknologi AI",
+        "Pemilik bisnis kecil mencari solusi otomasi",
+        "Content creator yang ingin efisiensi workflow",
+        "Freelancer yang ingin meningkatkan produktivitas"
+      ]
+    },
+    "data_trends": {
+      "status": "Hot topic 2025",
+      "popularitas": "Keyword terpanas di tech 2025",
+      "demand": "Tinggi dari developer dan non-developer"
+    },
+    "angle_konten_potensial": [
+      "AI Agent untuk pemula — dari konsep ke implementasi dalam 1 hari",
+      "Berapa penghasilan freelancer AI Agent di 2025?",
+      "5 bisnis kecil yang sudah pakai AI Agent dan hasilnya",
+      "Bedanya chatbot biasa vs AI Agent yang bisa action",
+      "Tutorial: Build AI Agent pertamamu dalam 4 jam"
+    ],
+    "keywords_utama": [
+      "AI agent indonesia",
+      "buat AI agent",
+      "otomasi bisnis AI",
+      "cara kerja AI agent",
+      "AI agent untuk pemula"
+    ],
+    "analisis_kompetitor": {
+      "situasi": "Sudah ada beberapa creator membahas AI Agent",
+      "kelemahan_kompetitor": "Kebanyakan pakai framework berat seperti LangChain",
+      "peluang": "Konten yang simple dan praktis untuk pemula"
+    },
+    "rekomendasi_strategi": {
+      "fokus_utama": "Penjelasan sederhana dan implementasi praktis",
+      "tone": "Ramah untuk pemula, hindari jargon teknis berlebihan",
+      "format_video": [
+        "Tutorial step-by-step",
+        "Case study bisnis real",
+        "Perbandingan sebelum/sesudah pakai AI Agent"
+      ],
+      "call_to_action": [
+        "Subscribe untuk tutorial lanjutan",
+        "Download template/resource gratis",
+        "Join komunitas AI Agent Indonesia"
+      ]
+    },
+    "ide_konten_spesifik": {
+      "video_1": {
+        "judul": "Apa itu AI Agent? Penjelasan untuk Pemula dalam 10 Menit",
+        "fokus": "Edukasi dasar, perbedaan dengan chatbot biasa"
+      },
+      "video_2": {
+        "judul": "5 Contoh AI Agent yang Bisa Kamu Buat Hari Ini",
+        "fokus": "Praktik langsung dengan tools no-code"
+      },
+      "video_3": {
+        "judul": "Berapa Biaya Membuat AI Agent? Budget untuk Pemula",
+        "fokus": "Transparansi biaya, opsi gratis vs berbayar"
+      }
+    }
+  }
+}
