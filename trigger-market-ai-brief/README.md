@@ -68,6 +68,29 @@ Before deploying, add every variable from `.env.example` to the Trigger.dev dash
 Environment Variables. A key that exists locally but not there is the most common production
 failure.
 
+## Deploying
+
+Pushing to `main` runs [`.github/workflows/deploy-trigger-prod.yml`](../.github/workflows/deploy-trigger-prod.yml),
+which deploys to the Trigger.dev production environment. It can also be run by hand from the
+Actions tab.
+
+Two things must be in place first, and **neither is optional**:
+
+1. **Repository secret `TRIGGER_ACCESS_TOKEN`** — Settings → Secrets and variables → Actions.
+   Use a production personal access token or an environment API key with deploy permission.
+   The deploy CLI reads `TRIGGER_ACCESS_TOKEN`, *not* `TRIGGER_SECRET_KEY`. Until this exists
+   the workflow skips with a warning instead of failing.
+
+2. **Every variable from `.env.example` added in the Trigger.dev dashboard** under
+   Environment Variables. The deploy ships code, not secrets — a task that deploys fine will
+   still throw `ANTHROPIC_API_KEY is not set` on its first scheduled run without this.
+
+The CLI is pinned in `devDependencies` and invoked through `npm run deploy:trigger-prod`.
+Do not switch the workflow to `npx trigger.dev@latest` — `deploy` fails CI whenever the CLI
+and `@trigger.dev/*` versions differ, and `@latest` drifts as soon as a new version ships.
+
+After deploying, check the Schedules tab shows `0 */6 * * *` registered.
+
 ## Stack
 
 TypeScript, Trigger.dev v4, `@anthropic-ai/sdk`, native `fetch`, `fast-xml-parser`.

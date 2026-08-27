@@ -1,0 +1,70 @@
+name: Deploy to Trigger.dev (prod)
+
+# Auto-deploys when the automation code changes on main, and can also be run
+# by hand from the Actions tab.
+#
+# Requires one repository secret: TRIGGER_ACCESS_TOKEN
+#   Settings -> Secrets and variables -> Actions -> New repository secret
+#   Value: a Trigger.dev key for the PRODUCTION environment, either a personal
+#   access token or an environment API key with deploy permission.
+#   The deploy CLI reads TRIGGER_ACCESS_TOKEN, never TRIGGER_SECRET_KEY.
+#
+# Until that secret exists this workflow skips with a warning rather than
+# failing, so the repo does not show a red X before setup is finished.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "trigger-market-ai-brief/**"
+      - ".github/workflows/deploy-trigger-prod.yml"
+  workflow_dispatch:
+
+# Never let two deploys race each other.
+concurrency:
+  group: trigger-deploy-prod
+  cancel-in-progress: false
+
+defaults:
+  run:
+    working-directory: trigger-market-ai-brief
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the deploy token is configured
+        id: guard
+        env:
+          TOKEN: ${{ secrets.TRIGGER_ACCESS_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::warning title=Deploy skipped::TRIGGER_ACCESS_TOKEN is not set. Add it under Settings -> Secrets and variables -> Actions, then re-run."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Use Node.js 20.x
+        if: steps.guard.outputs.ready == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: npm
+          cache-dependency-path: trigger-market-ai-brief/package-lock.json
+
+      - name: Install dependencies
+        if: steps.guard.outputs.ready == 'true'
+        run: npm ci
+
+      # Uses the pinned CLI from devDependencies via the package.json script.
+      # `npx trigger.dev@latest` would drift out of sync with @trigger.dev/sdk,
+      # and the deploy command fails CI on any version mismatch.
+      - name: 🚀 Deploy Trigger.dev
+        if: steps.guard.outputs.ready == 'true'
+        env:
+          TRIGGER_ACCESS_TOKEN: ${{ secrets.TRIGGER_ACCESS_TOKEN }}
+        run: npm run deploy:trigger-prod

@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "dev": "trigger dev",
+    "typecheck": "tsc --noEmit",
+    "deploy:trigger-prod": "trigger deploy",
+    "deploy:trigger-staging": "trigger deploy --env staging"
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.120.0",
     "@trigger.dev/sdk": "4.5.12",
@@ -7,6 +13,7 @@
   "devDependencies": {
     "@trigger.dev/build": "4.5.12",
     "@types/node": "^26.3.0",
+    "trigger.dev": "4.5.12",
     "typescript": "^5.9.3"
   }
 }
