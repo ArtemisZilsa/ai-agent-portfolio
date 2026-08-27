@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.120.0",
+    "@trigger.dev/sdk": "4.5.12",
+    "fast-xml-parser": "^5.11.0"
+  },
+  "devDependencies": {
+    "@trigger.dev/build": "4.5.12",
+    "@types/node": "^26.3.0",
+    "typescript": "^5.9.3"
+  }
+}
